@@ -12,6 +12,9 @@ import {
   StatusBar,
   useColorScheme,
 } from 'react-native';
+import {Provider} from 'react-redux';
+
+import store from './store';
 
 import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
 
@@ -25,18 +28,20 @@ function App(): JSX.Element {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <HomeScreen />
-      </ScrollView>
-    </SafeAreaView>
+    <Provider store={store}>
+      <SafeAreaView style={backgroundStyle}>
+        <StatusBar
+          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+          backgroundColor={backgroundStyle.backgroundColor}
+        />
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          style={backgroundStyle}>
+          <Header />
+          <HomeScreen />
+        </ScrollView>
+      </SafeAreaView>
+    </Provider>
   );
 }
 
